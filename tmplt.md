@@ -8,7 +8,7 @@ description: "<TITLE>"
 
 tags: ["<TAG>"]
 categories: ["tiddlywiki"]
-series: ["<TAG>"]
+series: ["<TAG>-series"]
 
 hiddenFromSearch: false
 ---

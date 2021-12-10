@@ -13,7 +13,6 @@ echo "[INFO] Processing $LENGTH entries"
 while [[ ${iter} -lt $LENGTH ]]; do
   TITLE="$(jq -r "[ .[] | select(.)][${iter:-0}].title" $INPUT)"
   TAGS="$(jq -r "[ .[] | select(.)][${iter:-0}].tags" $INPUT | grep --col -o '[a-zA-Z0-9 ]' | tr -d '\n')"
-  let iter++
   sed -e "s/<TITLE>/$TITLE/" \
       -e "s/<TAG>/$TAGS/" \
       -e "s/<DATE>/$DATE/" \
@@ -26,5 +25,6 @@ while [[ ${iter} -lt $LENGTH ]]; do
       > "imported/${TITLE}.md" &&
       echo "[ OK ] $iter/$LENGTH imported/${TITLE}.md" ||
       echo "[FAIL] imported/${TITLE}.md"
+  let iter++
 done
 
